@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { fetchCharacters } from "../api";
+import { fetchCharacters } from "../utils/api";
 import { Link, Outlet } from "react-router-dom";
 
 interface ICharacter {
@@ -20,7 +20,7 @@ function Home() {
 			{isLoading && <p>We are calling the characters!</p>}
 			<ul>
 				{data &&
-					data.slice(301, 400).map(character => (
+					data.slice(2800, 2899).map(character => (
 						<li key={character.id}>
 							<Link to={`/character/${character.id}`}>
 								<img src={character.imageUrl} alt={character.name} />

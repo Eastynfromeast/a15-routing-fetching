@@ -1,6 +1,79 @@
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
-import { fetchCharacterDetail } from "../api";
+import { Link, useParams } from "react-router-dom";
+import { fetchCharacterDetail } from "../utils/api";
+import styled from "styled-components";
+
+const ModalContainer = styled.div`
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background: rgba(175, 175, 175, 0.5);
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	flex-direction: row;
+	align-items: center;
+`;
+
+const Card = styled.div`
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	width: 80%;
+	max-width: 390px;
+	margin: 0 auto;
+	padding: 60px 15px;
+	text-align: center;
+	font-size: 16px;
+	background-color: ${props => props.theme.textColor};
+	color: ${props => props.theme.bgColor};
+	border-radius: 25px;
+	gap: 15px;
+`;
+
+const Name = styled.h1`
+	font-size: 2.5em;
+	text-transform: uppercase;
+`;
+
+const ProfilePhoto = styled.div`
+	display: flex;
+	width: 280px;
+	height: 280px;
+	border-radius: 15px;
+	overflow: hidden;
+	img {
+		width: 100%;
+		object-fit: cover;
+	}
+`;
+
+const ExitBtn = styled.span`
+	display: block;
+	position: absolute;
+	top: 3%;
+	right: 3%;
+	width: 35px;
+	height: 35px;
+	background-color: rgba(0, 0, 0, 0.5);
+	color: #fff;
+	border-radius: 50%;
+	a {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: 100%;
+	}
+	svg {
+		width: 80%;
+	}
+`;
 
 interface IDetailData {
 	id: number;
@@ -21,22 +94,36 @@ function Detail() {
 		queryFn: () => fetchCharacterDetail(id!),
 	});
 
+	console.log(character);
+
 	return (
-		<>
-			<h1>{isLoading ? "Character..." : character?.name}</h1>
+		<ModalContainer>
 			{isLoading && <p>We are calling the character you want to know</p>}
 			{character && (
-				<div>
-					<img src={character.imageUrl} alt={character.name} />
+				<Card>
+					<ExitBtn>
+						<Link to={"/"}>
+							<svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+								<path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+							</svg>
+						</Link>
+					</ExitBtn>
+					<Name>{character.name}</Name>
+					<ProfilePhoto>
+						<img src={character.imageUrl} alt={character.name} />
+					</ProfilePhoto>
 					<h2>{character.name}</h2>
-					<ul>
-						{character.films.map((film, index) => (
-							<li key={`film_${index}`}>{film}</li>
-						))}
-					</ul>
-				</div>
+					<div>
+						<h3>Philmography</h3>
+						<ul>
+							{character.films.map((film, index) => (
+								<li key={`film_${index}`}>{film}</li>
+							))}
+						</ul>
+					</div>
+				</Card>
 			)}
-		</>
+		</ModalContainer>
 	);
 }
 
