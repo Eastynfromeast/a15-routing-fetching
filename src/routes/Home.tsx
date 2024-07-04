@@ -1,5 +1,37 @@
+import { useQuery } from "react-query";
+import { fetchCharacters } from "../api";
+import { Link, Outlet } from "react-router-dom";
+
+interface ICharacter {
+	id: number;
+	name: string;
+	imageUrl: string;
+}
+
 function Home() {
-	return <h1>Home</h1>;
+	const { isLoading, data, error } = useQuery<ICharacter[]>({
+		queryKey: ["characters"],
+		queryFn: fetchCharacters,
+	});
+
+	return (
+		<>
+			<h1>Disney Characters</h1>
+			{isLoading && <p>We are calling the characters!</p>}
+			<ul>
+				{data &&
+					data.slice(301, 400).map(character => (
+						<li key={character.id}>
+							<Link to={`/character/${character.id}`}>
+								<img src={character.imageUrl} alt={character.name} />
+								<span>{character.name}</span>
+							</Link>
+						</li>
+					))}
+			</ul>
+			<Outlet />
+		</>
+	);
 }
 
 export default Home;
