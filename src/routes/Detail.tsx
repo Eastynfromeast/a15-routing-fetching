@@ -2,6 +2,7 @@ import { useQuery } from "react-query";
 import { Link, useParams } from "react-router-dom";
 import { fetchCharacterDetail } from "../utils/api";
 import styled from "styled-components";
+import { ICharacterDetail } from "../utils/interface";
 
 const ModalContainer = styled.div`
 	position: fixed;
@@ -75,21 +76,13 @@ const ExitBtn = styled.span`
 	}
 `;
 
-interface IDetailData {
-	id: number;
-	films: string[];
-	name: string;
-	imageUrl: string;
-	sourceUrl: string;
-}
-
 function Detail() {
 	const { id } = useParams();
 	const {
 		isLoading,
 		data: character,
 		error,
-	} = useQuery<IDetailData>({
+	} = useQuery<ICharacterDetail>({
 		queryKey: ["character", id],
 		queryFn: () => fetchCharacterDetail(id!),
 	});

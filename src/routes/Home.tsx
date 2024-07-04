@@ -1,12 +1,44 @@
 import { useQuery } from "react-query";
 import { fetchCharacters } from "../utils/api";
 import { Link, Outlet } from "react-router-dom";
+import { ICharacter } from "../utils/interface";
+import styled from "styled-components";
 
-interface ICharacter {
-	id: number;
-	name: string;
-	imageUrl: string;
-}
+const Container = styled.div`
+	width: 100%;
+	padding: 30px 15px;
+`;
+
+const Title = styled.h1`
+	text-align: center;
+	font-size: 48px;
+	padding: 20px 15px;
+	margin-bottom: 15px;
+`;
+
+const CharacterGrid = styled.ul`
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(120px, 280px));
+	grid-gap: 15px;
+	justify-content: center;
+`;
+
+const Character = styled.li`
+	text-align: center;
+	transition: all 0.2s ease-in;
+	a {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		height: 100%;
+		transition: all 0.2s ease-in;
+	}
+	&:hover {
+		a {
+			transform: scale(1.2);
+		}
+	}
+`;
 
 function Home() {
 	const { isLoading, data, error } = useQuery<ICharacter[]>({
@@ -15,22 +47,22 @@ function Home() {
 	});
 
 	return (
-		<>
-			<h1>Disney Characters</h1>
+		<Container>
+			<Title>Disney Characters</Title>
 			{isLoading && <p>We are calling the characters!</p>}
-			<ul>
+			<CharacterGrid>
 				{data &&
 					data.slice(2800, 2899).map(character => (
-						<li key={character.id}>
+						<Character key={character.id}>
 							<Link to={`/character/${character.id}`}>
 								<img src={character.imageUrl} alt={character.name} />
-								<span>{character.name}</span>
+								<h3>{character.name}</h3>
 							</Link>
-						</li>
+						</Character>
 					))}
-			</ul>
+			</CharacterGrid>
 			<Outlet />
-		</>
+		</Container>
 	);
 }
 
