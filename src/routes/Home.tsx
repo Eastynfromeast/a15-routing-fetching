@@ -3,6 +3,7 @@ import { fetchCharacters } from "../utils/api";
 import { Link, Outlet } from "react-router-dom";
 import { ICharacter } from "../utils/interface";
 import styled from "styled-components";
+import { useEffect } from "react";
 
 const Container = styled.div`
 	width: 100%;
@@ -41,10 +42,16 @@ const Character = styled.li`
 `;
 
 function Home() {
-	const { isLoading, data, error } = useQuery<ICharacter[]>({
+	const { isLoading, data, isError, error } = useQuery<ICharacter[]>({
 		queryKey: ["characters"],
 		queryFn: fetchCharacters,
 	});
+
+	useEffect(() => {
+		if (isError) {
+			console.log(error);
+		}
+	}, [isError]);
 
 	return (
 		<Container>
