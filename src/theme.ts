@@ -2,6 +2,6 @@ import { DefaultTheme } from "styled-components";
 
 export const disneyTheme: DefaultTheme = {
 	textColor: "#fff",
-	bgColor: "#282820",
-	accentColor: "#f8f088",
+	bgColor: "#040714",
+	accentColor: "#02D6E8",
 };

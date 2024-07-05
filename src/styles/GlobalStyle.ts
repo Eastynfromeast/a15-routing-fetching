@@ -1,4 +1,8 @@
 import { createGlobalStyle } from "styled-components";
+import Disney from "../fonts/Disney.woff";
+import NewWaltDisneyUI from "../fonts/NewWaltDisneyUi-8YdA.woff";
+import NewWaltDisenyRegular from "../fonts/NewWaltDisneyFontRegular-BPen.woff";
+
 const GlobalStyle = createGlobalStyle`
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
@@ -129,6 +133,25 @@ table {
 	border-spacing: 0;
 }
 
+@font-face {
+    font-family: 'Disney';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Disney.woff'), url(${Disney}) format('woff');
+}
+@font-face {
+    font-family: 'NewWaltDisneyUi';
+    font-style: normal;
+    font-weight: normal;
+    src: local('NewWaltDisneyUi-8YdA.woff'), url('${NewWaltDisneyUI}') format('woff');
+}
+@font-face {
+    font-family: 'NewWaltDisneyFontRegular-BPen';
+    font-style: normal;
+    font-weight: normal;
+	src: local('NewWaltDisneyFontRegular-BPen.woff'), url(${NewWaltDisenyRegular}) format('woff');
+}
+
 * {
 	box-sizing: border-box;
 }
@@ -136,6 +159,7 @@ table {
 body {
 	background-color:${props => props.theme.bgColor};
 	color: ${props => props.theme.textColor};
+	font-family: "Disney";
 }
 
 a {
