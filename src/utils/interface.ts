@@ -11,3 +11,8 @@ export interface ICharacterDetail {
 	imageUrl: string;
 	sourceUrl: string;
 }
+
+export interface IQueryError {
+	message: string;
+	statusCode?: number;
+}

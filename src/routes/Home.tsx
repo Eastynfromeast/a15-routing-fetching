@@ -1,9 +1,10 @@
 import { useQuery } from "react-query";
 import { fetchCharacters } from "../utils/api";
 import { Link, Outlet } from "react-router-dom";
-import { ICharacter } from "../utils/interface";
+import { ICharacter, IQueryError } from "../utils/interface";
 import styled from "styled-components";
 import { useEffect } from "react";
+import ErrorAlert from "../components/ErrorAlert";
 
 const Container = styled.div`
 	width: 100%;
@@ -42,7 +43,7 @@ const Character = styled.li`
 `;
 
 function Home() {
-	const { isLoading, data, isError, error } = useQuery<ICharacter[]>({
+	const { isLoading, data, isError, error } = useQuery<ICharacter[], IQueryError>({
 		queryKey: ["characters"],
 		queryFn: fetchCharacters,
 	});
@@ -68,6 +69,7 @@ function Home() {
 						</Character>
 					))}
 			</CharacterGrid>
+			{isError && <ErrorAlert statusCode={error.statusCode} message={error.message} />}
 			<Outlet />
 		</Container>
 	);

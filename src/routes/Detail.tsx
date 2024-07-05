@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { fetchCharacterDetail } from "../utils/api";
 import styled from "styled-components";
 import { ICharacterDetail } from "../utils/interface";
