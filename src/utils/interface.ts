@@ -16,3 +16,7 @@ export interface IQueryError {
 	message: string;
 	statusCode?: number;
 }
+
+export interface ILoadingContext {
+	context: string;
+}

@@ -2,6 +2,8 @@ import { DefaultTheme } from "styled-components";
 
 export const disneyTheme: DefaultTheme = {
 	textColor: "#fff",
-	bgColor: "#040714",
-	accentColor: "#02D6E8",
+	bgColor: "#010C60",
+	accentColor: "#0E53CD",
+	popColor: "#FCFB64",
+	bgGradientColor: "radial-gradient(#269DE8 ,#110C2D)",
 };
