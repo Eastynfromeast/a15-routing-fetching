@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { ICharacter } from "../../utils/interface";
+import { addDefaultImg } from "../../utils/utils";
+import defaultImg from "../../img/default_image.jpg";
 
 const Coin = styled.li`
 	display: flex;
@@ -52,7 +54,13 @@ function CharacterCircle(character: ICharacter) {
 	return (
 		<Coin key={character.id}>
 			<Link to={`/character/${character.id}`}>
-				<img src={character.imageUrl} alt={character.name} />
+				<img
+					src={character.imageUrl ? character.imageUrl : defaultImg}
+					alt={character.name}
+					onError={e => {
+						(e.target as HTMLImageElement).src = defaultImg;
+					}}
+				/>
 				<h2>{character.name}</h2>
 			</Link>
 		</Coin>

@@ -33,8 +33,6 @@ function Detail() {
 		queryFn: () => fetchCharacterDetail(id!),
 	});
 
-	console.log(character);
-
 	return (
 		<ModalContainer>
 			{isLoading && <LoadingSpinner context={"We are calling the character you want to know"} />}

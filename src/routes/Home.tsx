@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import { fetchCharacters } from "../utils/api";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { ICharacter, IQueryError } from "../utils/interface";
 import ErrorAlert from "../components/ErrorAlert";
 import styled from "styled-components";
@@ -42,7 +42,7 @@ function Home() {
 			{data && (
 				<GridList>
 					{data.slice(2800, 2899).map(character => (
-						<CharacterCircle {...character} />
+						<CharacterCircle key={character.id} {...character} />
 					))}
 				</GridList>
 			)}
