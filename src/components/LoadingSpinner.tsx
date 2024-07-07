@@ -9,7 +9,7 @@ const LoaderWrapper = styled.div`
 	height: 100%;
 	text-align: center;
 	min-height: 100vh;
-	padding-top: 30%;
+	padding-top: 45%;
 	p {
 		color: ${props => props.theme.textColor};
 	}

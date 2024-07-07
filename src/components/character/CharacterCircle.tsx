@@ -52,16 +52,16 @@ const Coin = styled.li`
 `;
 
 function CharacterCircle(character: ICharacter) {
-	const validateImageUrl = (url: string): Promise<boolean> => {
+	/* 	const validateImageUrl = (url: string): Promise<boolean> => {
 		return new Promise(resolve => {
 			const img = new Image();
 			img.src = url;
 			img.onload = () => resolve(true);
 			img.onerror = () => resolve(false);
 		});
-	};
+	}; */
 
-	const [validImageUrl, setValidImageUrl] = useState(character.imageUrl);
+	/* 	const [validImageUrl, setValidImageUrl] = useState(character.imageUrl);
 	useEffect(() => {
 		const checkImageUrl = async () => {
 			const isValid = await validateImageUrl(character.imageUrl);
@@ -70,12 +70,12 @@ function CharacterCircle(character: ICharacter) {
 			}
 		};
 		checkImageUrl();
-	}, [character.imageUrl]);
+	}, [character.imageUrl]); */
 
 	return (
 		<Coin key={character.id}>
 			<Link to={`/character/${character.id}`}>
-				<img src={validImageUrl} alt={character.name} />
+				<img src={character.imageUrl ? character.imageUrl : defaultImg} alt={character.name} />
 				<h2>{character.name}</h2>
 			</Link>
 		</Coin>
