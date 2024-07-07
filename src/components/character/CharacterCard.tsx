@@ -16,10 +16,11 @@ const Card = styled.div`
 	padding: 60px 15px;
 	text-align: center;
 	font-size: 18px;
-	background-color: ${props => props.theme.textColor};
-	color: ${props => props.theme.bgColor};
+	background: ${props => props.theme.bgGradientColor};
+	color: ${props => props.theme.textColor};
 	border-radius: 25px;
 	gap: 15px;
+	box-shadow: 0 0 10px rgba(255, 255, 255, 0.75), 0 0 15px rgba(255, 255, 255, 0.5), 0 0 rgba(255, 255, 255, 0.5) #0f51cc;
 `;
 
 const Name = styled.h1`
@@ -54,13 +55,13 @@ const Filmography = styled.div`
 		font-family: "NewWaltDisneyFontRegular-BPen";
 	}
 	li {
-		padding: 7px 10px;
+		padding: 10px 12px;
 		border: 1px solid;
 		border-radius: 5px;
 		transition: all 0.2s ease-in;
 		&:hover {
-			background-color: ${props => props.theme.bgColor};
-			color: ${props => props.theme.textColor};
+			background-color: ${props => props.theme.textColor};
+			color: ${props => props.theme.bgColor};
 		}
 	}
 `;

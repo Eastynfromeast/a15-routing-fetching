@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { ICharacter } from "../../utils/interface";
-import { addDefaultImg } from "../../utils/utils";
 import defaultImg from "../../img/default_image.jpg";
+import { useEffect, useState } from "react";
 
 const Coin = styled.li`
 	display: flex;
@@ -24,7 +24,7 @@ const Coin = styled.li`
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		filter: grayscale(1) blur(10px);
+		filter: grayscale(1) blur(5px);
 		transition: all 0.2s ease-in;
 	}
 	h2 {
@@ -46,21 +46,36 @@ const Coin = styled.li`
 		}
 		h2 {
 			color: ${props => props.theme.popColor};
+			text-shadow: 0 0 5px rgba(255, 255, 255, 0.75), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 15px #0f51cc;
 		}
 	}
 `;
 
 function CharacterCircle(character: ICharacter) {
+	const validateImageUrl = (url: string): Promise<boolean> => {
+		return new Promise(resolve => {
+			const img = new Image();
+			img.src = url;
+			img.onload = () => resolve(true);
+			img.onerror = () => resolve(false);
+		});
+	};
+
+	const [validImageUrl, setValidImageUrl] = useState(character.imageUrl);
+	useEffect(() => {
+		const checkImageUrl = async () => {
+			const isValid = await validateImageUrl(character.imageUrl);
+			if (!isValid) {
+				setValidImageUrl(defaultImg);
+			}
+		};
+		checkImageUrl();
+	}, [character.imageUrl]);
+
 	return (
 		<Coin key={character.id}>
 			<Link to={`/character/${character.id}`}>
-				<img
-					src={character.imageUrl ? character.imageUrl : defaultImg}
-					alt={character.name}
-					onError={e => {
-						(e.target as HTMLImageElement).src = defaultImg;
-					}}
-				/>
+				<img src={validImageUrl} alt={character.name} />
 				<h2>{character.name}</h2>
 			</Link>
 		</Coin>

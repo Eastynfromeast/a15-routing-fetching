@@ -1,11 +1,11 @@
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { fetchCharacterDetail } from "../utils/api";
-import styled from "styled-components";
 import { ICharacterDetail, IQueryError } from "../utils/interface";
 import ErrorAlert from "../components/ErrorAlert";
 import CharacterCard from "../components/character/CharacterCard";
 import LoadingSpinner from "../components/LoadingSpinner";
+import styled from "styled-components";
 
 const ModalContainer = styled.div`
 	position: fixed;
