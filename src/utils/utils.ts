@@ -1,6 +1,7 @@
 import { SyntheticEvent } from "react";
-import defaultImg from "../img/default_image.jpg";
 import { ICharacter } from "./interface";
+
+export const defaultImg = `${process.env.PUBLIC_URL}/images/default_image.jpg`;
 
 export const addDefaultImg = (e: SyntheticEvent<HTMLImageElement, Event>) => {
 	try {

@@ -5,7 +5,7 @@ import { fetchCharacters } from "../utils/api";
 import { chunkArray } from "../utils/utils";
 import { ICharacter, IQueryError } from "../utils/interface";
 import ErrorAlert from "../components/ErrorAlert";
-import CharacterCircle from "../components/character/CharacterCircle";
+import CharacterCoin from "../components/character/CharacterCoin";
 import LoadingSpinner from "../components/LoadingSpinner";
 import Footer from "../layout/Footer";
 import styled, { keyframes } from "styled-components";
@@ -106,7 +106,7 @@ function Home() {
 					</SelectCharacters>
 					<GridList>
 						{data.slice(numbers.a, numbers.b).map(character => (
-							<CharacterCircle key={character.id} {...character} />
+							<CharacterCoin key={character.id} {...character} />
 						))}
 					</GridList>
 				</>

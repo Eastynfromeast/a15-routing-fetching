@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import GoBackButton from "../GoBackButton";
 import { ICharacterDetail } from "../../utils/interface";
-import defaultImg from "../../img/default_image.jpg";
 
 const Card = styled.div`
 	position: relative;
@@ -89,7 +88,7 @@ function CharacterCard(character: ICharacterDetail) {
 			<GoBackButton />
 			<Name>{character.name}</Name>
 			<ProfilePhoto>
-				<img src={character.imageUrl ? character.imageUrl : defaultImg} alt={character.name} />
+				<img src={character.imageUrl} alt={character.name} />
 			</ProfilePhoto>
 			<Filmography>
 				<h3>Philmography</h3>
