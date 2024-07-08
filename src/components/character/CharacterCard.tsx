@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import GoBackButton from "../GoBackButton";
 import { ICharacterDetail } from "../../utils/interface";
-import defaultImg from "../../../public/img/default_image.jpg";
+import defaultImg from "../../assets/img/default_image.jpg";
 
 const Card = styled.div`
 	position: relative;

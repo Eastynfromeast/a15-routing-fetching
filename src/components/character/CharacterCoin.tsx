@@ -72,6 +72,7 @@ function CharacterCoin(character: ICharacter) {
 		};
 		checkImageUrl();
 	}, [character.imageUrl]);
+	// dependency가 잘못된 것 같은 느낌이 있기도 하다. 왜냐? 404 에러 이미지들의 src가 변경되지 않았으니까!
 
 	return (
 		<Coin key={character.id}>
